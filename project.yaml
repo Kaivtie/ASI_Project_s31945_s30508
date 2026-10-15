@@ -2,7 +2,7 @@
 # Kontrakt datasetów prowadzącej jest w src/asi_project/datasets.yaml — tamtego pliku nie edytujemy.
 
 # TODO (S1): id datasetu z docs/datasets.md, np. ai4i_2020.
-dataset: https://archive.ics.uci.edu/dataset/848/secondary+mushroom+dataset
+dataset: secondary_mushroom
 
 # TODO (S1): typy cech po EDA. Wyłącznie kolumny z ALLOWED FEATURES wybranego datasetu.
 
