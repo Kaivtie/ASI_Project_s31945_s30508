@@ -16,7 +16,7 @@ powiązane, ale nie zawierają gotowych rozwiązań ani zadań do wykonania wcze
 
 | Pole | Wartość |
 |---|---|
-| Zespół i integrator Sprintu 1 | Katarzyna Gronostajska, Kacper Wierzba - integrator|
+| Zespół i integrator Sprintu 1 | Ewelina Paczkowska s30995, Katarzyna Gronostajska s31945, Kacper Wierzba s30508 - integrator sprint 1|
 | Dataset (id z `docs/datasets.md`) | secondary_mushroom |
 | Źródło, licencja i cytowanie (DOI) | UCI Machine Learning Repository, CC BY 4.0, DOI: https://doi.org/10.24432/C5FP5Q |
 | Data pobrania danych | 15.10.2026 |
