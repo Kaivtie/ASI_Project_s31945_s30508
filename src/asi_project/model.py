@@ -59,5 +59,5 @@ def build_baseline_pipeline(
             ("classifier", LogisticRegression(max_iter=1000, random_state=42)),
         ]
     )
-    
+
     return model
