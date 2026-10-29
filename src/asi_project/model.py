@@ -7,8 +7,12 @@ które zostały dopasowane na X_train, a cały model można zapisać jako jeden 
 
 from collections.abc import Sequence
 
+from sklearn.compose import ColumnTransformer
 from sklearn.dummy import DummyClassifier
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
 def make_dummy() -> DummyClassifier:
@@ -20,7 +24,7 @@ def build_baseline_pipeline(
     numeric_features: Sequence[str],
     categorical_features: Sequence[str],
 ) -> Pipeline:
-    """TODO (S1): Pipeline = model preprocessing (ColumnTransformer) + LogisticRegression.
+    """Pipeline = model preprocessing (ColumnTransformer) + LogisticRegression.
 
     Wymagania (sprawdzane w tests/test_project.py):
     - Pipeline przyjmuje DataFrame z kolumnami ``numeric_features + categorical_features``,
@@ -31,6 +35,29 @@ def build_baseline_pipeline(
 
     Wzorzec znasz z drugich zajęć (notebook 02 onboardingu).
     """
-    raise NotImplementedError(
-        "TODO (S1): zaimplementuj build_baseline_pipeline w src/asi_project/model.py",
+    numeric_transformer = Pipeline(
+        steps=[
+            ("imputer", SimpleImputer(strategy="median")),
+            ("scaler", StandardScaler()),
+        ]
     )
+    categorical_transformer = Pipeline(
+        steps=[
+            ("imputer", SimpleImputer(strategy="most_frequent")),
+            ("encoder", OneHotEncoder(handle_unknown="ignore")),
+        ]
+    )
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ("numeric", numeric_transformer, list(numeric_features)),
+            ("categorical", categorical_transformer, list(categorical_features)),
+        ]
+    )
+    model = Pipeline(
+        steps=[
+            ("preprocessor", preprocessor),
+            ("classifier", LogisticRegression(max_iter=1000, random_state=42)),
+        ]
+    )
+
+    return model

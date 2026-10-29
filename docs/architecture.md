@@ -46,12 +46,36 @@ albo jako obraz w `docs/` z linkiem w tej sekcji. Usuńcie znaczniki TODO, gdy d
 gotowy — sprawdza to `python scripts/check_dod.py`.
 
 <!-- DIAGRAM-V0:START -->
+
 ```mermaid
-flowchart LR
-    data["TODO: źródło danych"] --> model["TODO: kolejne elementy systemu"]
+flowchart TD
+    A["Dane grzybów - UCI"]
+    B["Kontrakt danych - datasets.yaml"]
+    C["Normalizacja danych"]
+    D["Filtrowanie danych treningowych"]
+    E["Podział na train i test"]
+    F["Przygotowanie cech - Pipeline"]
+    G["Trenowanie modelu"]
+    H["Zapis modelu - planowane"]
+    I["API - planowane"]
+    J["UI - planowane"]
+    K["Baza danych - planowane"]
+
+    A --> C
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    J -->|Wysyła dane grzyba| I
+    I -->|Zwraca predykcję| J
+    I --> K
 ```
 
-TODO: krótki opis diagramu (3–5 zdań).
+
+Dane grzybów pochodzą ze zbioru Secondary Mushroom. Najpierw dane są normalizowane i filtrowane, a następnie dzielone na zbiór treningowy i testowy. Przygotowanie cech odbywa się w pipeline, w którym trenujemy model LogisticRegression.
 <!-- DIAGRAM-V0:END -->
 
 ## Historia zmian architektury
